@@ -33,19 +33,33 @@ function searchHistory() {
     console.log(input);
     console.log(index);
 
-    // Fetch data from api for specific city input
-    
     var apikey = "a53b85c0c9cce34b65599127147440f8";
-    var url = "http://api.openweathermap.org/geo/1.0/direct?q="+input+"&limit=1&appid=" + apikey;
 
-fetch(url)
-.then(function (response) {
-    console.log(response);
-    return response.json();
-})
-.then(function (data){
-    console.log(data)
-});
+    // First gets the lat and long
+    fetch("http://api.openweathermap.org/geo/1.0/direct?q="+ input +"&limit=1&appid=" + apikey)
+    .then(function (response) {
+        console.log(response);
+        return response.json();
+    })
+    .then(function (data){
+        console.log(data)
+        var lat = data[0].lat;
+        var lon = data[0].lon;
+        document.querySelector("#citytitle").innerHTML = data[0].name
+        var url = "https://api.openweathermap.org/data/2.5/forecast?lat="+ lat +"&lon="+ lon +"&appid=" + apikey + "&units=metric";
+    
+        fetch(url)
+        .then(function (response) {
+        console.log(response);
+        return response.json();
+            })
+        .then(function (data){
+        console.log(data)
+        document.querySelector("#citytemp").innerHTML = data.list[0].main.temp + " °C"
+        document.querySelector("#citywind").innerHTML = data.list[0].wind.speed + " meters/sec"
+        document.querySelector("#humidity").innerHTML = data.list[0].main.humidity + " %"
+    });
+    });
 
 
 
