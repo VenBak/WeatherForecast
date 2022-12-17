@@ -1,18 +1,3 @@
-// var apikey = "a53b85c0c9cce34b65599127147440f8"
-// var url = "http://api.openweathermap.org/geo/1.0/direct?q=London&limit=5&appid=" + apikey
-
-// fetch(url)
-// .then(function (response) {
-//     console.log(response);
-//     return response.json();
-// })
-// .then(function (data){
-//     console.log(data)
-// });
-
-
-
-
 // Gets all the cities from the local storage
 for (let i = 1; i <= localStorage.length; i++) {
     var get = localStorage.getItem("citysearch"+i);
@@ -23,7 +8,6 @@ for (let i = 1; i <= localStorage.length; i++) {
     console.log(get);
 }
 
-
 // Gets the current day of the year and displays it next to city search result
 document.querySelector("#date").innerHTML = dayjs().format('(DD/MM/YYYY)');
 
@@ -32,8 +16,6 @@ const element = document.getElementById("searchbtn");
 element.addEventListener("click", searchHistory);
 
 var index = 0
-
-
 function searchHistory() {
     // Adds 1 to an index to store the input in the local storage 
     index++;
@@ -45,12 +27,26 @@ function searchHistory() {
     var element = document.createElement("button");
     parent.append(element);
     element.innerHTML = input;
-    // input.innerHTML = inputs.join('<br/>');
-    if (input != " ") {
-        inputs.push(input) 
-    }
+
     // Missing: Add attribute to button
     console.log("click");
     console.log(input);
     console.log(index);
+
+    // Fetch data from api for specific city input
+    
+    var apikey = "a53b85c0c9cce34b65599127147440f8";
+    var url = "http://api.openweathermap.org/geo/1.0/direct?q="+input+"&limit=1&appid=" + apikey;
+
+fetch(url)
+.then(function (response) {
+    console.log(response);
+    return response.json();
+})
+.then(function (data){
+    console.log(data)
+});
+
+
+
 }
