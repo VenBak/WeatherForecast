@@ -1,4 +1,7 @@
-// Gets all the cities from the local storage
+// Sets the input as a string
+var input = "";
+
+// Gets all the cities from the local storage and creates a button for them
 for (let i = 1; i <= localStorage.length; i++) {
     var get = localStorage.getItem("citysearch"+i);
     var getparent = document.querySelector("#searchhistory");
@@ -6,10 +9,26 @@ for (let i = 1; i <= localStorage.length; i++) {
     getparent.append(getcreatebutton);
     getcreatebutton.innerHTML = get;
     console.log(get);
-}
 
+    // getcreatebutton.addEventListener("click", function () {
+    //     input = get;
+    //     searchHistory();
+
+    // })
+}
+// Gets today's date with a specified format
+var today = dayjs().format('(DD/MM/YYYY)')
+// Gets todays date of the month
+var date = dayjs().date()
+console.log(date)
 // Gets the current day of the year and displays it next to city search result
-document.querySelector("#date").innerHTML = dayjs().format('(DD/MM/YYYY)');
+document.querySelector("#date").innerHTML = today;
+// Pastes all the days for the forecast
+var month = dayjs().format('/MM/YYYY)')
+document.getElementById("day-t-1").textContent = '(' + (date + 1) + month;
+document.getElementById("day-t-2").textContent = '(' + (date + 2) + month;
+document.getElementById("day-t-3").textContent = '(' + (date + 3) + month;
+document.getElementById("day-t-4").textContent = '(' + (date + 4) + month;
 
 // Event listener for search button
 const element = document.getElementById("searchbtn");
@@ -41,6 +60,7 @@ function searchHistory() {
         console.log(response);
         return response.json();
     })
+        // Sets variable name for lat and lon and pastes in name of the city
     .then(function (data){
         console.log(data)
         var lat = data[0].lat;
@@ -54,10 +74,24 @@ function searchHistory() {
         return response.json();
             })
         .then(function (data){
+        // Gets the temp, wind speed and humidity fro the api and pastes it
         console.log(data)
         document.querySelector("#citytemp").innerHTML = data.list[0].main.temp + " °C"
         document.querySelector("#citywind").innerHTML = data.list[0].wind.speed + " meters/sec"
         document.querySelector("#humidity").innerHTML = data.list[0].main.humidity + " %"
+        
+        // Adds the text content for all of the forecasted weather
+
+        for (let i = 1; i < 5; i++) {
+        document.querySelector("#temp-t-"+i).innerHTML = data.list[i].main.temp + " °C"
+        document.querySelector("#wind-t-"+i).innerHTML = data.list[i].wind.speed + " meters/sec"
+        document.querySelector("#humidity-t-"+i).innerHTML = data.list[i].main.humidity + " %"
+            
+        }
+        // document.querySelector("#temp-t-1").innerHTML = data.list[1].main.temp + " °C"
+        // document.querySelector("#wind-t-1").innerHTML = data.list[1].wind.speed + " meters/sec"
+        // document.querySelector("#humidity-t-1").innerHTML = data.list[1].main.humidity + " %"
+
     });
     });
 

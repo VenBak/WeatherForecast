@@ -1,9 +1,33 @@
 * {
-    border: 3px solid red;
+    border: 3px solid;
     margin: 10px;
+    padding: 5px;
+    font-family: 'Montserrat', sans-serif;
 }
 
 #title {
     background-color: blue;
+    padding: 5% auto;
 }
+
+.forecast-1 {
+    display: inline-block;
+}
+
+.forecast-2 {
+    display: inline-block;
+}
+
+.forecast-3 {
+    display: inline-block;
+}
+
+.forecast-4 {
+    display: inline-block;
+}
+/* 
+.invisible {
+    visibility: hidden;
+} */
+
 
