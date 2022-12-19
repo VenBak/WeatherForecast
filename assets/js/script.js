@@ -72,7 +72,7 @@ function render(input) {
     var apikey = "a53b85c0c9cce34b65599127147440f8";
 
     // First gets the lat and long
-    fetch("http://api.openweathermap.org/geo/1.0/direct?q="+ input +"&limit=1&appid=" + apikey)
+    fetch("https://api.openweathermap.org/geo/1.0/direct?q="+ input +"&limit=1&appid=" + apikey)
     .then(function (response) {
         return response.json();
         // Sets variable name for lat and lon and pastes in name of the city
