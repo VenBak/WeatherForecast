@@ -9,13 +9,11 @@ for (let i = 1; i <= localStorage.length; i++) {
     getparent.append(getcreatebutton);
     getcreatebutton.innerHTML = get;
     getcreatebutton.setAttribute("class", "btn btn-primary citysearch"+i)
-    console.log(get);
 }
 // Gets today's date with a specified format
 var today = dayjs().format('(DD/MM/YYYY)')
 // Gets todays date of the month
 var date = dayjs().date()
-console.log(date)
 
 // Variable used for forecast date
 var month = dayjs().format('/MM/YYYY)')
@@ -38,11 +36,6 @@ function searchHistory() {
     element.innerHTML = input;
     element.setAttribute("class", "btn btn-primary citysearch"+index)
 
-    // Missing: Add attribute to button
-    console.log("click");
-    console.log(input);
-    console.log(index);
-
     // Gets the current day of the year and displays it next to city search result
     document.querySelector("#date").innerHTML = today;
 
@@ -50,13 +43,12 @@ function searchHistory() {
     document.querySelector("#forecasttitle").innerHTML = "5-Day Forecast:"
 
     // Adds attribute which adds color to results that are searched
-    document.querySelector("#result").setAttribute("class", "render1")
-    document.querySelector("#forecasttitle").setAttribute("class", "render")
-    document.querySelector("#todayresult").setAttribute("class", "render")
-    for (let x = 1; x < 5; x++) {
-        document.querySelector(".forecast-"+x).setAttribute("class", "render")
-    }
-
+    document.querySelector("#result").removeAttribute("class", "render1");
+    document.querySelector("#result").setAttribute("class", "render1");
+    document.querySelector("#forecasttitle").removeAttribute("class", "render");
+    document.querySelector("#forecasttitle").setAttribute("class", "render");
+    document.querySelector("#todayresult").removeAttribute("class", "render");
+    document.querySelector("#todayresult").setAttribute("class", "render");
 
     // Pastes all the days for the forecast
     document.getElementById("day-t-1").textContent = '(' + (date + 1) + month;
@@ -141,6 +133,6 @@ function searchHistory() {
 
 
 
-function historyClick() {
+// function historyClick() {
     
-}
+// }
