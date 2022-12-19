@@ -8,27 +8,17 @@ for (let i = 1; i <= localStorage.length; i++) {
     var getcreatebutton = document.createElement("button");
     getparent.append(getcreatebutton);
     getcreatebutton.innerHTML = get;
+    getcreatebutton.setAttribute("class", "btn btn-primary citysearch"+i)
     console.log(get);
-
-    // getcreatebutton.addEventListener("click", function () {
-    //     input = get;
-    //     searchHistory();
-
-    // })
 }
 // Gets today's date with a specified format
 var today = dayjs().format('(DD/MM/YYYY)')
 // Gets todays date of the month
 var date = dayjs().date()
 console.log(date)
-// Gets the current day of the year and displays it next to city search result
-document.querySelector("#date").innerHTML = today;
-// Pastes all the days for the forecast
+
+// Variable used for forecast date
 var month = dayjs().format('/MM/YYYY)')
-document.getElementById("day-t-1").textContent = '(' + (date + 1) + month;
-document.getElementById("day-t-2").textContent = '(' + (date + 2) + month;
-document.getElementById("day-t-3").textContent = '(' + (date + 3) + month;
-document.getElementById("day-t-4").textContent = '(' + (date + 4) + month;
 
 // Event listener for search button
 const element = document.getElementById("searchbtn");
@@ -46,11 +36,21 @@ function searchHistory() {
     var element = document.createElement("button");
     parent.append(element);
     element.innerHTML = input;
+    element.setAttribute("class", "btn btn-primary citysearch"+index)
 
     // Missing: Add attribute to button
     console.log("click");
     console.log(input);
     console.log(index);
+
+    // Gets the current day of the year and displays it next to city search result
+    document.querySelector("#date").innerHTML = today;
+
+    // Pastes all the days for the forecast
+    document.getElementById("day-t-1").textContent = '(' + (date + 1) + month;
+    document.getElementById("day-t-2").textContent = '(' + (date + 2) + month;
+    document.getElementById("day-t-3").textContent = '(' + (date + 3) + month;
+    document.getElementById("day-t-4").textContent = '(' + (date + 4) + month;
 
     var apikey = "a53b85c0c9cce34b65599127147440f8";
 
@@ -79,6 +79,23 @@ function searchHistory() {
         document.querySelector("#citytemp").innerHTML = data.list[0].main.temp + " °C"
         document.querySelector("#citywind").innerHTML = data.list[0].wind.speed + " meters/sec"
         document.querySelector("#humidity").innerHTML = data.list[0].main.humidity + " %"
+        // Adds icon based on weather conditions for today's weather
+        var todayicon = document.querySelector("#cityimg");
+        if (data.list[0].weather[0].main == "Snow") {
+            todayicon.setAttribute("src", "./assets/images/snow.webp");
+        } else if (data.list[0].weather[0].main == "Rain") {
+            todayicon.setAttribute("src", "./assets/images/rain.webp");
+        }  else if (data.list[0].weather[0].main == "Clouds") {
+            todayicon.setAttribute("src", "./assets/images/cloudy.webp");
+        }   else if (data.list[0].weather[0].main == "Clear") {
+            todayicon.setAttribute("src", "./assets/images/sun.webp");
+        }   else if (data.list[0].weather[0].main == "Thunderstorm") {
+            todayicon.setAttribute("src", "./assets/images/thunderstorm.webp");
+        }   else if (data.list[0].weather[0].main == "Drizzle") {
+            todayicon.setAttribute("src", "./assets/images/drizzle.webp");
+        }   else if (data.list[0].weather[0].main == ("Mist" || "Smoke" || "Haze" || "Dust" || "Fog" || "Sand" || "Ash" || "Squall" || "Tornado")) {
+            todayicon.setAttribute("src", "./assets/images/wind.webp");
+        }
         
         // Adds the text content for all of the forecasted weather
 
@@ -86,15 +103,32 @@ function searchHistory() {
         document.querySelector("#temp-t-"+i).innerHTML = data.list[i].main.temp + " °C"
         document.querySelector("#wind-t-"+i).innerHTML = data.list[i].wind.speed + " meters/sec"
         document.querySelector("#humidity-t-"+i).innerHTML = data.list[i].main.humidity + " %"
-            
+        
+        // Adds icon based on weather conditions for forecast
+        if (data.list[i].weather[0].main == "Snow") {
+            document.querySelector("#img-t-"+i).setAttribute("src", "./assets/images/snow.webp");
+        } else if (data.list[i].weather[0].main == "Rain") {
+            document.querySelector("#img-t-"+i).setAttribute("src", "./assets/images/rain.webp");
+        }  else if (data.list[i].weather[0].main == "Clouds") { 
+            document.querySelector("#img-t-"+i).setAttribute("src", "./assets/images/cloudy.webp");
+        }   else if (data.list[i].weather[0].main == "Clear") {
+            document.querySelector("#img-t-"+i).setAttribute("src", "./assets/images/sun.webp");
+        }   else if (data.list[i].weather[0].main == "Thunderstorm") {
+            document.querySelector("#img-t-"+i).setAttribute("src", "./assets/images/thunderstorm.webp");
+        }   else if (data.list[i].weather[0].main == "Drizzle") {
+            document.querySelector("#img-t-"+i).setAttribute("src", "./assets/images/drizzle.webp");
+        }   else if (data.list[i].weather[0].main == ("Mist" || "Smoke" || "Haze" || "Dust" || "Fog" || "Sand" || "Ash" || "Squall" || "Tornado")) {
+            document.querySelector("#img-t-"+i).setAttribute("src", "./assets/images/wind.webp");
         }
-        // document.querySelector("#temp-t-1").innerHTML = data.list[1].main.temp + " °C"
-        // document.querySelector("#wind-t-1").innerHTML = data.list[1].wind.speed + " meters/sec"
-        // document.querySelector("#humidity-t-1").innerHTML = data.list[1].main.humidity + " %"
+        }
 
     });
     });
 
+}
 
 
+
+function historyClick() {
+    
 }
