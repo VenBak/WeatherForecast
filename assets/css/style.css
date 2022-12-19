@@ -1,13 +1,29 @@
 * {
-    border: 3px solid;
     margin: 10px;
     padding: 5px;
     font-family: 'Montserrat', sans-serif;
 }
 
+:root, body {
+    background-color: #0077b6;
+}
+
 #title {
-    background-color: blue;
+    background-color: #a2d2ff;
     padding: 5% auto;
+    font-family: 'Montserrat', sans-serif;
+}
+
+#search {
+    background-color: #a2d2ff
+}
+
+.render1 {
+    background-color: #a2d2ff
+}
+
+.render {
+    background-color: #bde0fe;
 }
 
 .forecast-1 {

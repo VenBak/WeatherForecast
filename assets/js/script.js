@@ -46,6 +46,18 @@ function searchHistory() {
     // Gets the current day of the year and displays it next to city search result
     document.querySelector("#date").innerHTML = today;
 
+    // Adds a title for the forecasted numbers
+    document.querySelector("#forecasttitle").innerHTML = "5-Day Forecast:"
+
+    // Adds attribute which adds color to results that are searched
+    document.querySelector("#result").setAttribute("class", "render1")
+    document.querySelector("#forecasttitle").setAttribute("class", "render")
+    document.querySelector("#todayresult").setAttribute("class", "render")
+    for (let x = 1; x < 5; x++) {
+        document.querySelector(".forecast-"+x).setAttribute("class", "render")
+    }
+
+
     // Pastes all the days for the forecast
     document.getElementById("day-t-1").textContent = '(' + (date + 1) + month;
     document.getElementById("day-t-2").textContent = '(' + (date + 2) + month;
@@ -76,9 +88,9 @@ function searchHistory() {
         .then(function (data){
         // Gets the temp, wind speed and humidity fro the api and pastes it
         console.log(data)
-        document.querySelector("#citytemp").innerHTML = data.list[0].main.temp + " °C"
-        document.querySelector("#citywind").innerHTML = data.list[0].wind.speed + " meters/sec"
-        document.querySelector("#humidity").innerHTML = data.list[0].main.humidity + " %"
+        document.querySelector("#citytemp").innerHTML = "Temp: " + data.list[0].main.temp + " °C"
+        document.querySelector("#citywind").innerHTML = "Wind: " + data.list[0].wind.speed + " meters/sec"
+        document.querySelector("#humidity").innerHTML = "Humidity: " + data.list[0].main.humidity + " %"
         // Adds icon based on weather conditions for today's weather
         var todayicon = document.querySelector("#cityimg");
         if (data.list[0].weather[0].main == "Snow") {
@@ -100,9 +112,9 @@ function searchHistory() {
         // Adds the text content for all of the forecasted weather
 
         for (let i = 1; i < 5; i++) {
-        document.querySelector("#temp-t-"+i).innerHTML = data.list[i].main.temp + " °C"
-        document.querySelector("#wind-t-"+i).innerHTML = data.list[i].wind.speed + " meters/sec"
-        document.querySelector("#humidity-t-"+i).innerHTML = data.list[i].main.humidity + " %"
+        document.querySelector("#temp-t-"+i).innerHTML = "Temp: " + data.list[i].main.temp + " °C"
+        document.querySelector("#wind-t-"+i).innerHTML = "Wind: " + data.list[i].wind.speed + " meters/sec"
+        document.querySelector("#humidity-t-"+i).innerHTML = "Humidity: " + data.list[i].main.humidity + " %"
         
         // Adds icon based on weather conditions for forecast
         if (data.list[i].weather[0].main == "Snow") {
