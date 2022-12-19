@@ -12,7 +12,7 @@ The purpose of this project was to try and use the openweather api in order to p
 
 ## Usage
 
-If you wish to use the website go ahead and clone the repo and open in the index.html file or you can directly click on this URL:
+If you wish to use the website go ahead and clone the repo and open in the index.html file or you can directly click on this URL: https://venbak.github.io/WeatherForecast/ 
 
 Here is what the website should look like:
 
