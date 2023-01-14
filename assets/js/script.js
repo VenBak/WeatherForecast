@@ -46,7 +46,7 @@ function searchHistory() {
     document.querySelector("#date").innerHTML = today;
 
     // Adds a title for the forecasted numbers
-    document.querySelector("#forecasttitle").innerHTML = "5-Day Forecast:"
+    document.querySelector("#forecasttitle").innerHTML = "4-Day Forecast:"
 
     // Adds attribute which adds color to results that are searched
     document.querySelector("#result").removeAttribute("class", "render1");
